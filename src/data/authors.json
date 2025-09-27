@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1d81f44c-95c8-4b7b-8018-b847c2a71c87",
+    "name": "Gabriel García Márquez",
+    "nationality": "Colombiana"
+  },
+  {
+    "id": "3f03h66e-07e0-4d9d-8230-d069e4c93e09",
+    "name": "Isabel Allende",
+    "nationality": "Chilena"
+  },
+  {
+    "id": "4g14i77f-18f1-4e0e-8341-e170f5d04f10",
+    "name": "Jorge Luis Borges",
+    "nationality": "Argentina"
+  },
+  {
+    "id": "5h25j88g-29g2-4f1f-8452-f281g6e15g21",
+    "name": "Julio Verne",
+    "nationality": "Francesa"
+  },
+  {
+    "id": "6i36k99h-30h3-4g2g-8563-g392h7f26h32",
+    "name": "Isabel Allende",
+    "nationality": "Estadounidense"
+  },
+  {
+    "name": "Julio Cortázar",
+    "nationality": "Argentina",
+    "id": "5c526ba5-45bf-4930-8074-2b84eb62a856"
+  },
+  {
+    "name": "pedro jose",
+    "nationality": "aer",
+    "id": "41c814ea-38ae-4cc8-922c-b596215d240f"
+  }
+]
