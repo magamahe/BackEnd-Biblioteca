@@ -11,7 +11,7 @@ Desafío Integrador: API de Gestión de Biblioteca
 
 <div align="center">
   <!-- 👉 Acá podés insertar imágenes de presentación del proyecto -->
-  <img src="./img/imagen2.png" alt="Vista de la consola del cliente" width="500">
+  <img src="./img/imagen3.png" alt="Vista de la consola del cliente" width="500">
 </div>
 
 ---
