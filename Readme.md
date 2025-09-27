@@ -21,7 +21,7 @@ Desafío Integrador: API de Gestión de Biblioteca
 - [✨ Características principales](#-características-principales)
 - [🧠 Arquitectura del proyecto](#-arquitectura-del-proyecto)
 - [🛠️ Tecnologías utilizadas](#️-tecnologías-utilizadas)
-- [� Estructura de archivos](#-estructura-de-archivos)
+- [📂 Estructura de archivos](#-estructura-de-archivos)
 - [🚀 Instalación y configuración](#-instalación-y-configuración)
   - [📌 Prerrequisitos](#-prerrequisitos)
   - [🧭 Pasos](#-pasos)
@@ -186,13 +186,22 @@ node client.js
 
 #### 👉 Se desplegará el menú principal interactivo.
 
+<div align="center">
+  <!-- 👉 Acá podés insertar imágenes de presentación del proyecto -->
+  <img src="./img/Terminal-server.js.png" alt="Vista de la consola del cliente" width="500">
+  <p>Terminal del SERVER</p>
+  <img src="./img/Terminal-client.js.png" alt="Vista de la consola del cliente" width="500">
+  <p>Terminal del CLIENT</p>
+</div>
+
 <a href="#-índice">⬆️ Volver al índice</a>
 
 ---
 
 ## 📝 Ejemplos de uso
-#### ➕ Agregar un nuevo autor
 
+#### ➕ Agregar un nuevo autor
+```bash
 En el menú principal, elegí 3 (Agregar).
 
 Seleccioná 1 (Autor).
@@ -200,9 +209,10 @@ Seleccioná 1 (Autor).
 Ingresá el nombre y la nacionalidad.
 
 Recibirás una confirmación con el nuevo ID.
+```
 
 #### ✏️ Editar un libro
-
+```bash
 Buscá el libro (2 → Buscar → Libro).
 
 Copiá el ID que te devuelve la tabla.
@@ -210,6 +220,7 @@ Copiá el ID que te devuelve la tabla.
 Volvé al menú y seleccioná 4 → Editar → Libro.
 
 Pegá el ID y modificá los campos deseados.
+```
 
 <a href="#-índice">⬆️ Volver al índice</a>
 
@@ -235,4 +246,4 @@ node test.js
 <p align="rigth"> <strong>BORGOGNO, Antonela</strong> 
 </p> <p align="center"> <a href="https://github.com/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://linkedin.com/in/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://discord.com/users/tu-discord-id" target="_blank"> <img src="https://cdn.iconscout.com/icon/free/png-256/discord-3-569463.png" alt="Discord" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="mailto:magamahe@gmail.com"> <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="40" height="40"/> </a> </p> 
 <p align="rigth"> <strong>MARTINEZ, Gabriela</strong> 
-</p> <p align="center"> <a href="https://github.com/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://linkedin.com/in/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://discord.com/users/tu-discord-id" target="_blank"> <img src="https://cdn.iconscout.com/icon/free/png-256/discord-3-569463.png" alt="Discord" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="mailto:magamahe@gmail.com"> <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="40" height="40"/> </a> </p>```
+</p> <p align="center"> <a href="https://github.com/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://linkedin.com/in/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://discord.com/users/tu-discord-id" target="_blank"> <img src="https://cdn.iconscout.com/icon/free/png-256/discord-3-569463.png" alt="Discord" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="mailto:magamahe@gmail.com"> <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="40" height="40"/> </a> </p>
