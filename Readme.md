@@ -14,6 +14,7 @@ Desafío Integrador: API de Gestión de Biblioteca
   <img src="./img/imagen3.png" alt="Vista de la consola del cliente" width="500">
 </div>
 
+REPOSITORIO REALIZADO GRUPALMENTE, EN EL GITHUB DE ANTONELA BORGOGNO, DONDE SE PUEDEN VER LAS RAMAS CREADAS PARA EL DESARROLLO DEL TRABAJO FINAL.
 ---
 
 ### 📑 Índice
