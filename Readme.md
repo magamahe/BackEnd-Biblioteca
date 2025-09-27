@@ -1,150 +1,238 @@
-# API de Gestión de Biblioteca (Trabajo Práctico Integrador)
+<div align="center">
+  <img src="https://ada.fonselp.com/static/media/logo.64e1716d.png" alt="Logo de Ada ITW" width="200">
+</div>
 
-Este proyecto es una aplicación de consola completa para la gestión de una biblioteca, desarrollada en Node.js. Consiste en un servidor TCP que maneja la lógica de negocio y la persistencia de datos, y un cliente de terminal interactivo que permite a los usuarios interactuar con la API de una manera intuitiva y guiada.
+<h2 align="center">
+📚 Proyecto Final <span style="font-size:1.2rem; font-weight:bold;">Back End</span> 📚 <br>
+Desafío Integrador: API de Gestión de Biblioteca
+</h2>
 
-La aplicación sigue el patrón de diseño **Modelo-Vista-Controlador (MVC)** para una clara separación de responsabilidades y un código mantenible.
+<h1 align="center" style="font-size:3rem; font-weight:bold;">Aplicación de Consola con Arquitectura MVC</h1>
 
-## ✨ Características Principales
+<div align="center">
+  <!-- 👉 Acá podés insertar imágenes de presentación del proyecto -->
+  <img src="./img/imagen2.png" alt="Vista de la consola del cliente" width="500">
+</div>
 
-*   **Gestión CRUD Completa:** Soporte para Crear, Leer, Actualizar y Eliminar (CRUD) para tres categorías de datos: Autores, Libros y Editoriales.
-*   **Cliente de Consola Interactivo:** Una interfaz de usuario amigable con menús numéricos que guía al usuario a través de todas las operaciones, eliminando la necesidad de escribir comandos complejos o JSON manualmente.
-*   **Persistencia de Datos:** La información se almacena de forma persistente en archivos `.json` locales, manejados por el servidor.
-*   **Búsqueda Parcial e Insensible a Mayúsculas:** La funcionalidad de búsqueda permite encontrar ítems incluso si no se escribe el nombre completo.
-*   **Manejo de Relaciones:** El sistema gestiona las relaciones entre libros, autores y editoriales (ej: al agregar un libro, se valida que el autor y la editorial existan).
-*   **Script de Pruebas Automatizado:** Incluye un script (`test.js`) que ejecuta una secuencia de pruebas para verificar la funcionalidad completa del CRUD y el manejo de errores de la API.
+---
 
-## 🏛️ Arquitectura del Proyecto
+### 📑 Índice
+- [📌 Descripción](#-descripción)
+- [✨ Características principales](#-características-principales)
+- [🧠 Arquitectura del proyecto](#-arquitectura-del-proyecto)
+- [🛠️ Tecnologías utilizadas](#️-tecnologías-utilizadas)
+- [� Estructura de archivos](#-estructura-de-archivos)
+- [🚀 Instalación y configuración](#-instalación-y-configuración)
+  - [📌 Prerrequisitos](#-prerrequisitos)
+  - [🧭 Pasos](#-pasos)
+    - [1. Clonar el repositorio](#1-clonar-el-repositorio)
+    - [2. Entrar a la carpeta del proyecto](#2-entrar-a-la-carpeta-del-proyecto)
+    - [3. Instalar dependencias](#3-instalar-dependencias)
+- [🏃 Modo de uso](#-modo-de-uso)
+  - [1️⃣ Servidor](#1️⃣-servidor)
+    - [o](#o)
+    - [👉 Aparecerá el mensaje:](#-aparecerá-el-mensaje)
+  - [2️⃣ Cliente](#2️⃣-cliente)
+    - [👉 Se desplegará el menú principal interactivo.](#-se-desplegará-el-menú-principal-interactivo)
+- [📝 Ejemplos de uso](#-ejemplos-de-uso)
+    - [➕ Agregar un nuevo autor](#-agregar-un-nuevo-autor)
+    - [✏️ Editar un libro](#️-editar-un-libro)
+- [🧪 Pruebas automatizadas](#-pruebas-automatizadas)
+  - [1. Asegurate de que el servidor esté corriendo](#1-asegurate-de-que-el-servidor-esté-corriendo)
+  - [2. Ejecutá las pruebas en otra terminal](#2-ejecutá-las-pruebas-en-otra-terminal)
+- [👥 Autores](#-autores)
 
-El proyecto está estructurado siguiendo el patrón **Modelo-Vista-Controlador (MVC)** para garantizar un código organizado, desacoplado y fácil de mantener.
+---
 
-*   **`models/` (Modelo):** Es la capa de datos. Su única responsabilidad es interactuar directamente con los archivos `json`. Contiene toda la lógica para leer, escribir, buscar, actualizar y eliminar registros. No sabe nada sobre los comandos del usuario.
-*   **`views/` (Vista):** Es la capa de presentación. Su única responsabilidad es tomar los datos que le pasa el controlador y darles un formato legible para la terminal (por ejemplo, crear las tablas de texto). No realiza ninguna lógica de negocio.
-*   **`controllers/` (Controlador):** Es el "cerebro" de la aplicación. Actúa como intermediario, recibiendo las peticiones del servidor, pidiendo los datos necesarios al modelo, y pasando esos datos a la vista para que prepare la respuesta final. Aquí residen las reglas de negocio (ej: para agregar un libro, primero validar que el autor exista).
-*   **`server.js`:** Actúa como el "enrutador" o punto de entrada. Escucha las conexiones TCP, interpreta los comandos básicos del cliente y los delega al controlador correspondiente.
-*   **`client.js`:** Es la interfaz de usuario final. Mantiene una conexión persistente con el servidor y proporciona un menú interactivo para construir y enviar los comandos.
+## 📌 Descripción
 
-### Principio DRY y Reutilización de Código
+Este proyecto es una **aplicación de consola completa** desarrollada en **Node.js**, que permite gestionar autores, libros y editoriales a través de un **servidor TCP** y un **cliente interactivo**.  
 
-Durante el desarrollo, se exploraron dos enfoques para la capa de Modelo:
+La API sigue el patrón **Modelo–Vista–Controlador (MVC)** para mantener un código organizado, escalable y fácil de mantener.  
+Todas las operaciones se realizan desde la terminal, mediante un sistema de menús intuitivo que elimina la necesidad de escribir comandos manuales.
 
-1.  **Modelos Autónomos:** Cada modelo (`authorsModel.js`, `booksModel.js`) contiene toda su lógica de lectura/escritura de archivos. Es funcional pero introduce duplicación de código.
-2.  **Fábrica de Modelos (Enfoque Ideal):** Se propone una solución más avanzada utilizando un módulo de utilidades (`utils/utils.js`) y una "fábrica" (`models/createDataModel.js`). Este enfoque centraliza toda la lógica CRUD genérica en un solo lugar, eliminando el código repetido y haciendo el sistema mucho más mantenible y escalable, adhiriéndose estrictamente al principio **DRY (Don't Repeat Yourself)**.
+<a href="#-índice">⬆️ Volver al índice</a>
 
-## 📂 Estructura de Archivos
+---
 
-```
-book-api/
-├── data/
+## ✨ Características principales
+
+- 🧭 **Interfaz de consola interactiva** para navegar por menús numéricos.  
+- 📝 **Gestión CRUD completa** para Autores, Libros y Editoriales.  
+- 💾 **Persistencia de datos** en archivos `.json` locales.  
+- 🔍 **Búsqueda parcial e insensible a mayúsculas**.  
+- 🔗 **Manejo de relaciones** entre autores, libros y editoriales.  
+- 🧠 **Separación clara de capas (MVC)** para facilitar el mantenimiento.  
+- 🧪 **Script de pruebas automatizado** para validar las operaciones principales.
+
+<a href="#-índice">⬆️ Volver al índice</a>
+
+---
+
+## 🧠 Arquitectura del proyecto
+
+El proyecto utiliza la arquitectura **MVC**, separando claramente las responsabilidades:
+
+- **Modelos (`models/`)** → Gestionan la lectura y escritura de datos JSON.  
+- **Vistas (`views/`)** → Formatean las respuestas para mostrarlas en la terminal.  
+- **Controladores (`controllers/`)** → Contienen la lógica de negocio y coordinan la interacción entre modelos y vistas.  
+- **Servidor (`server.js`)** → Escucha conexiones TCP y enruta las peticiones.  
+- **Cliente (`client.js`)** → Proporciona el menú interactivo para el usuario final.
+
+Además, se implementa un **enfoque DRY** a través de una **fábrica de modelos genérica**, que centraliza la lógica CRUD y evita duplicaciones.
+
+<a href="#-índice">⬆️ Volver al índice</a>
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+<div align="center">
+  <!-- 👉 Acá podés insertar imágenes de presentación del proyecto -->
+  <img src="./img/tecno.png" alt="Vista de la consola del cliente" width="500">
+</div>
+
+| JavaScript | Node.js | TCP (Net Module) | Console I/O (Readline) | JSON | OOP (POO) | UUID | Git | GitHub |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="50" height="50"/> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="50" height="50"/> | <img src="https://www.shutterstock.com/image-vector/tcp-icon-element-design-260nw-2658521605.jpg" alt="TCP"/> | <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx2MwUPCc6Gyc9c3fCCHZjFpzFiMqQ89XqOw&s" alt="Readline"/> | <img src="https://logodix.com/logo/1593303.png" alt="JSON"/> | <img src="https://static.vecteezy.com/system/resources/previews/026/330/873/non_2x/oop-icon-vector.jpg" alt="OOP"/> | <img src="https://blog.ramongomes.com.br/wp-content/uploads/2023/02/uuid_bg_blog.jpg" alt="UUID"/> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" width="50" height="50"/> | <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="50" height="50"/> |
+
+<a href="#-índice">⬆️ Volver al índice</a>
+
+---
+
+## 📂 Estructura de archivos
+
+```bash
+📁 book-api
+├── 📂 data
 │   ├── authors.json
 │   ├── books.json
 │   └── publishers.json
-├── src/
-│   ├── controllers/
+├── 📂 src
+│   ├── 📂 controllers
 │   │   ├── authorsController.js
 │   │   ├── booksController.js
 │   │   └── publishersController.js
-│   ├── models/
+│   ├── 📂 models
 │   │   ├── authorsModel.js
 │   │   ├── booksModel.js
-|   |   ├── createDataModel.js
+│   │   ├── createDataModel.js
 │   │   └── publishersModel.js
-│   └── views/
+│   └── 📂 views
 │       └── responseFormatter.js
 ├── .gitignore
 ├── client.js
+├── server.js
+├── test.js
 ├── package.json
 ├── package-lock.json
-├── Readme.md
-├── server.js
-└── test.js
+└── README.md
 ```
 
-## 🚀 Instalación y Configuración
+<a href="#-índice">⬆️ Volver al índice</a>
 
-Sigue estos pasos para poner en marcha el proyecto.
+---
 
-### Prerrequisitos
+## 🚀 Instalación y configuración
+### 📌 Prerrequisitos
+```bash
+Node.js  v18+
 
-*   [Node.js](https://nodejs.org/) (versión 18 o superior recomendada)
-*   npm (generalmente se instala con Node.js)
+npm (incluido con Node.js)
+```
 
-### Pasos
+### 🧭 Pasos
+#### 1. Clonar el repositorio
+```bash
+git clone https://github.com/Antonela89/book-api-ADA
+```
 
-1.  **Clona el repositorio:**
-    ```bash
-    git clone https://github.com/Antonela89/book-api-ADA
-    ```
-2.  **Navega a la carpeta del proyecto:**
-    ```bash
-    cd book-api
-    ```
-3.  **Instala las dependencias:**
-    Este proyecto solo requiere la librería `uuid` para generar identificadores únicos.
-    ```bash
-    npm install
-    ```
+#### 2. Entrar a la carpeta del proyecto
+```bash
+cd book-api
+```
 
-## 🏃 Modo de Uso
+#### 3. Instalar dependencias
+```bash
+npm install
+```
 
-La aplicación requiere dos terminales: una para el servidor y otra para el cliente.
+<a href="#-índice">⬆️ Volver al índice</a>
 
-### 1. Iniciar el Servidor
+---
 
-En tu primera terminal, ejecuta el siguiente comando para iniciar el servidor. Permanecerá en espera de conexiones.
+## 🏃 Modo de uso
 
+Para ejecutar el proyecto se necesitan dos terminales:
+
+### 1️⃣ Servidor
 ```bash
 npm start
 ```
-o alternativamente:
+#### o
 ```bash
 node server.js
 ```
-Verás un mensaje de confirmación: `Servidor TCP escuchando en el puerto 8080`.
 
-### 2. Iniciar el Cliente Interactivo
+#### 👉 Aparecerá el mensaje:
+```bash
+Servidor TCP escuchando en el puerto 8080
+```
 
-En una **segunda terminal**, ejecuta el siguiente comando para iniciar el cliente y conectarte al servidor.
-
+### 2️⃣ Cliente
 ```bash
 node client.js
 ```
-Aparecerá el menú principal y podrás empezar a interactuar con la aplicación.
 
-## 📝 Ejemplos de Uso (Cliente Interactivo)
+#### 👉 Se desplegará el menú principal interactivo.
 
-El cliente te guiará a través de menús numéricos para realizar todas las acciones.
+<a href="#-índice">⬆️ Volver al índice</a>
 
-### Ejemplo: Agregar un nuevo autor
+---
 
-1.  En el menú principal, selecciona la opción `3` (Agregar a una categoría).
-2.  En el sub-menú, selecciona `1` (Autor).
-3.  El programa te pedirá: `Nombre del autor:`. Escribe el nombre y presiona Enter.
-4.  Luego te pedirá: `Nacionalidad:`. Escribe la nacionalidad y presiona Enter.
-5.  Recibirás una respuesta del servidor confirmando que el autor fue añadido, incluyendo su nuevo ID.
+## 📝 Ejemplos de uso
+#### ➕ Agregar un nuevo autor
 
-### Ejemplo: Editar un libro
+En el menú principal, elegí 3 (Agregar).
 
-1.  Primero, busca el libro para obtener su ID. Selecciona la opción `2` (Buscar), luego `2` (Libro), y escribe parte del título.
-2.  El servidor te devolverá una tabla con los resultados y sus IDs. Copia el ID del libro que deseas editar.
-3.  Vuelve al menú principal. Selecciona la opción `4` (Editar en una categoría), y luego `2` (Libro).
-4.  El programa te pedirá: `Ingresa el ID del/de la libro a editar:`. Pega el ID que copiaste y presiona Enter.
-5.  El cliente te guiará para ingresar los nuevos datos (título, año, género), permitiéndote dejar campos en blanco para no cambiarlos.
-6.  Recibirás una confirmación del servidor.
+Seleccioná 1 (Autor).
 
-## 🧪 Pruebas Automatizadas
+Ingresá el nombre y la nacionalidad.
 
-El proyecto incluye un script de pruebas automatizado que verifica el ciclo CRUD completo para la categoría de autores y prueba varios casos de error.
+Recibirás una confirmación con el nuevo ID.
 
-### Cómo ejecutar las pruebas:
+#### ✏️ Editar un libro
 
-1.  Asegúrate de que el **servidor esté corriendo** en una terminal (`npm start`).
-2.  En una **segunda terminal**, ejecuta el siguiente comando:
-    ```bash
-    node test.js
-    ```
-3.  La terminal mostrará el progreso de cada prueba, el comando enviado y la respuesta del servidor, finalizando con un resumen.
+Buscá el libro (2 → Buscar → Libro).
+
+Copiá el ID que te devuelve la tabla.
+
+Volvé al menú y seleccioná 4 → Editar → Libro.
+
+Pegá el ID y modificá los campos deseados.
+
+<a href="#-índice">⬆️ Volver al índice</a>
+
+---
+
+## 🧪 Pruebas automatizadas
+
+Incluye un script que ejecuta automáticamente el ciclo CRUD para verificar la API.
+
+### 1. Asegurate de que el servidor esté corriendo
+```bash
+npm start
+```
+### 2. Ejecutá las pruebas en otra terminal
+```bash
+node test.js
+```
+<a href="#-índice">⬆️ Volver al índice</a>
+
+---
 
 ## 👥 Autores
-
-*   Maria Gabriela Martinez Herrero 
-*   Antonela Borgogno
+<p align="rigth"> <strong>BORGOGNO, Antonela</strong> 
+</p> <p align="center"> <a href="https://github.com/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://linkedin.com/in/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://discord.com/users/tu-discord-id" target="_blank"> <img src="https://cdn.iconscout.com/icon/free/png-256/discord-3-569463.png" alt="Discord" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="mailto:magamahe@gmail.com"> <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="40" height="40"/> </a> </p> 
+<p align="rigth"> <strong>MARTINEZ, Gabriela</strong> 
+</p> <p align="center"> <a href="https://github.com/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://linkedin.com/in/magamahe" target="_blank"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="https://discord.com/users/tu-discord-id" target="_blank"> <img src="https://cdn.iconscout.com/icon/free/png-256/discord-3-569463.png" alt="Discord" width="40" height="40"/> </a> &nbsp;&nbsp; <a href="mailto:magamahe@gmail.com"> <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="40" height="40"/> </a> </p>```
